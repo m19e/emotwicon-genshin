@@ -75,82 +75,82 @@
             "position": "before"
           },
           {
-            "pattern": "@/consts",
+            "pattern": "consts",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/types",
+            "pattern": "types",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/utils",
+            "pattern": "utils",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/hooks",
+            "pattern": "hooks",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/types/**",
+            "pattern": "types/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/hooks/**",
+            "pattern": "hooks/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/utils/**",
+            "pattern": "utils/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/pages/**",
+            "pattern": "pages/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/components/page/**",
+            "pattern": "components/page/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/components/model/**",
+            "pattern": "components/model/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/components/ui/**",
+            "pattern": "components/ui/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/components/templates/**",
+            "pattern": "components/templates/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/components/organisms/**",
+            "pattern": "components/organisms/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/components/molecules/**",
+            "pattern": "components/molecules/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/components/atoms/**",
+            "pattern": "components/atoms/**",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "@/styles/**",
+            "pattern": "styles/**",
             "group": "index",
             "position": "before"
           }
