@@ -51,27 +51,27 @@
         "pathGroups": [
           {
             "pattern": "next",
-            "group": "internal",
+            "group": "external",
             "position": "before"
           },
           {
             "pattern": "next/**",
-            "group": "internal",
+            "group": "external",
             "position": "before"
           },
           {
             "pattern": "next-**",
-            "group": "internal",
+            "group": "external",
             "position": "before"
           },
           {
             "pattern": "react",
-            "group": "internal",
+            "group": "external",
             "position": "before"
           },
           {
             "pattern": "react-**",
-            "group": "internal",
+            "group": "external",
             "position": "before"
           },
           {
