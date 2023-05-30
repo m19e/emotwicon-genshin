@@ -11,6 +11,7 @@ export type ImageContent = {
 
 export type StampContent = {
   id: string
+  character_id: string[]
   text: string
   data: ImageContent
 }
