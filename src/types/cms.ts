@@ -1,11 +1,13 @@
 import type { DynamicImage } from "types/image"
 
+type ImageData = {
+  url: string
+  width: number
+  height: number
+}
+
 export type ImageContent = {
-  image: {
-    url: string
-    width: number
-    height: number
-  }
+  image: ImageData
   alt: string
 }
 
@@ -17,3 +19,15 @@ export type StampContent = {
 }
 
 export type StampProps = Omit<StampContent, "data"> & DynamicImage
+
+export type VersionStampContent = {
+  character_id: string[]
+  text: string
+  image: ImageData
+}
+
+export type VersionContent = {
+  id: string
+  version: string
+  stamps: VersionStampContent[]
+}
