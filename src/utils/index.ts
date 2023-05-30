@@ -1,6 +1,6 @@
 import { getPlaiceholder } from "plaiceholder"
 
-import type { StampContent } from "types/cms"
+import type { VersionStampContent } from "types/cms"
 import type { DynamicImage } from "types/image"
 
 const getImage = async (src: string) => {
@@ -19,12 +19,12 @@ const getImage = async (src: string) => {
   }
 }
 
-export const getDynamicImage = async (stamp: StampContent) => {
-  const { image, alt } = stamp.data
+export const getDynamicImage = async (stamp: VersionStampContent) => {
+  const { image, character_id } = stamp
   const { base64, img } = await getImage(image.url)
 
   return {
     imageProps: { ...img, blurDataURL: base64 },
-    alt,
+    alt: character_id[0],
   } as DynamicImage
 }
