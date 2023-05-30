@@ -1,7 +1,7 @@
 import type { NextPage, InferGetStaticPropsType } from "next"
 
 import { getDynamicImage } from "utils"
-import type { StampContent, StampProps } from "types/cms"
+import type { StampProps, VersionContent } from "types/cms"
 import type { DynamicImage } from "types/image"
 import { Client } from "utils/client"
 
@@ -14,17 +14,20 @@ const Page: NextPage<Props> = (props) => {
 }
 
 export const getStaticProps = async () => {
-  const { contents } = await Client.getList<StampContent>({
-    endpoint: "stamps",
+  const { contents } = await Client.getList<VersionContent>({
+    endpoint: "versions",
     queries: { limit: 50 },
   })
 
+  const allStamps = contents.map((v) => v.stamps).flat()
+
   const images: DynamicImage[] = await Promise.all(
-    contents.map(getDynamicImage)
+    allStamps.map(getDynamicImage)
   )
 
-  const stamps: StampProps[] = contents.map(({ id, text }, i) => ({
-    id,
+  const stamps: StampProps[] = allStamps.map(({ character_id, text }, i) => ({
+    id: `${character_id[0]}-${i}`,
+    character_id,
     text: text || "",
     ...images[i],
   }))
