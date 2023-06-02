@@ -18,7 +18,7 @@ export const Stamps = ({ stamps }: Props) => {
             #emotwicon_genshin
           </h1>
         </header>
-        <main className="flex flex-col flex-1 items-center p-4 bg-[#637340]/50 rounded-box">
+        <main className="flex flex-col flex-1 items-center p-4 bg-[#637340]/25 rounded-box">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {items}
           </div>
