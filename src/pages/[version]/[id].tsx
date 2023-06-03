@@ -4,7 +4,6 @@ import type {
   InferGetStaticPropsType,
   NextPage,
 } from "next"
-import {} from "next-seo"
 
 import { getAllStampProps } from "utils"
 import type { VersionContent } from "types/cms"
