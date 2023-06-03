@@ -4,20 +4,20 @@ import type {
   InferGetStaticPropsType,
   NextPage,
 } from "next"
+import {} from "next-seo"
 
 import { getAllStampProps } from "utils"
 import type { VersionContent } from "types/cms"
 import { Client } from "utils/client"
 import { Stamps } from "components/Stamps"
-import { Stamp } from "components/Stamps/Stamp"
+import { SEO } from "components/Stamps/SEO"
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const Page: NextPage<Props> = ({ stamps, card }) => {
   return (
     <>
-      <p className="whitespace-pre-wrap">{JSON.stringify(card, null, 2)}</p>
-      <Stamp stamp={card} />
+      <SEO card={card} />
       <Stamps stamps={stamps} />
     </>
   )
