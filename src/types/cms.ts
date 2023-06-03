@@ -6,20 +6,6 @@ type ImageData = {
   height: number
 }
 
-export type ImageContent = {
-  image: ImageData
-  alt: string
-}
-
-export type StampContent = {
-  id: string
-  character_id: string[]
-  text: string
-  data: ImageContent
-}
-
-export type StampProps = Omit<StampContent, "data"> & DynamicImage
-
 export type VersionStampContent = {
   character_id: string[]
   text: string
@@ -31,3 +17,10 @@ export type VersionContent = {
   version: string
   stamps: VersionStampContent[]
 }
+
+export type StampProps = {
+  id: string
+  version_id: string
+  character_id: string[]
+  text: string
+} & DynamicImage
