@@ -19,18 +19,22 @@ export const Modal = () => {
               <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
             </>
           )}
+
           <BlurImage imageProps={imageProps} alt={alt} />
+
           <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
           <div className="flex flex-col gap-2 items-stretch w-64">
             <Favorite />
             <Copy />
-            <Tweet />
+            <Tweet id={selectedStamp.id} />
           </div>
         </label>
       </label>
     </>
   )
 }
+
+// TODO: Implement modal menu
 
 const Favorite = () => {
   return (
@@ -52,6 +56,12 @@ const Favorite = () => {
   )
 }
 
+const getShareURL = (id: string) =>
+  "https://twitter.com/intent/tweet?text=" +
+  encodeURIComponent(
+    "#emotwicon_genshin " + process.env.NEXT_PUBLIC_SITE_ROOT_URL + id
+  )
+
 const Copy = () => {
   return (
     <StampButton label="コピー">
@@ -62,9 +72,9 @@ const Copy = () => {
   )
 }
 
-const Tweet = () => {
+const Tweet = ({ id }: { id: string }) => {
   return (
-    <StampButton label="ツイート">
+    <StampButton label="ツイート" id={id}>
       <svg
         viewBox="0 0 20 20"
         aria-hidden="true"
@@ -76,7 +86,29 @@ const Tweet = () => {
   )
 }
 
-const StampButton: FC<{ label: string }> = ({ label, children }) => {
+const StampButton: FC<{ label: string; id?: string }> = ({
+  label,
+  id,
+  children,
+}) => {
+  if (id) {
+    return (
+      <a
+        className="relative p-2 text-lg text-zinc-800 bg-[#ece5d8] hover:bg-[#ece5d8] rounded-full btn"
+        href={getShareURL(id)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div className="flex absolute inset-0 items-center p-2">
+          <div className="flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full">
+            {children}
+          </div>
+        </div>
+        <p className="ml-4">{label}</p>
+      </a>
+    )
+  }
+
   return (
     <div className="relative p-2 text-lg text-zinc-800 bg-[#ece5d8] hover:bg-[#ece5d8] rounded-full btn">
       <div className="flex absolute inset-0 items-center p-2">
