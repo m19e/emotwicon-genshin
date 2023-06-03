@@ -1,5 +1,6 @@
 import { DefaultSeo, NextSeo } from "next-seo"
 
+import { mockKirara } from "consts"
 import type { StampProps } from "types/cms"
 import { Stamp } from "components/Stamps/Stamp"
 
@@ -19,7 +20,7 @@ export const Default = () => {
         description: "#emotwicon_genshin",
         images: [
           {
-            url: "https://images.microcms-assets.io/assets/ae99c1c3e09f47a4b1bd70a1968debf3/87c2b9da511a4db69fb7e0d170b299ed/1.png",
+            url: mockKirara.imageProps.src,
           },
         ],
       }}
