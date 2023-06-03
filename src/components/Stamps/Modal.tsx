@@ -1,5 +1,6 @@
 import type { FC } from "react"
 
+import { SITE_URL } from "consts"
 import { useSelectedStamp } from "hooks"
 
 import { BlurImage } from "./BlurImage"
@@ -19,9 +20,7 @@ export const Modal = () => {
               <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
             </>
           )}
-
           <BlurImage imageProps={imageProps} alt={alt} />
-
           <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
           <div className="flex flex-col gap-2 items-stretch w-64">
             <Favorite />
@@ -56,11 +55,7 @@ const Favorite = () => {
   )
 }
 
-const getShareURL = (id: string) =>
-  "https://twitter.com/intent/tweet?text=" +
-  encodeURIComponent(
-    "#emotwicon_genshin " + process.env.NEXT_PUBLIC_SITE_ROOT_URL + id
-  )
+const getTweetText = (id: string) => `#emotwicon_genshin ${SITE_URL + id}`
 
 const Copy = () => {
   return (
@@ -71,6 +66,10 @@ const Copy = () => {
     </StampButton>
   )
 }
+
+const getShareURL = (id: string) =>
+  "https://twitter.com/intent/tweet?text=" +
+  encodeURIComponent(getTweetText(id))
 
 const Tweet = ({ id }: { id: string }) => {
   return (

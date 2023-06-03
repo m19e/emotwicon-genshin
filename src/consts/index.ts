@@ -12,3 +12,5 @@ export const mockKirara = {
   },
   alt: "kirara",
 }
+
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_ROOT_URL ?? ""
