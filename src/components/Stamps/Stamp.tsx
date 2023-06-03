@@ -9,6 +9,7 @@ type Props = {
 
 export const Stamp = ({ stamp }: Props) => {
   const [, selectStamp] = useSelectedStamp()
+  const { imageProps, alt } = stamp
 
   return (
     <label
@@ -17,7 +18,7 @@ export const Stamp = ({ stamp }: Props) => {
       onClick={() => selectStamp(stamp)}
     >
       <div className="flex justify-center items-center p-1 w-full h-full border-2 border-[#e0d2b6]">
-        <BlurImage imageProps={stamp.imageProps} alt={stamp.alt} />
+        <BlurImage imageProps={imageProps} alt={alt} />
       </div>
     </label>
   )
