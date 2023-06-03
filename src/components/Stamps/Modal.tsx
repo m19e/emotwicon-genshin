@@ -73,43 +73,38 @@ const getShareURL = (id: string) =>
 
 const Tweet = ({ id }: { id: string }) => {
   return (
-    <StampButton label="ツイート" id={id}>
-      <svg
-        viewBox="0 0 20 20"
-        aria-hidden="true"
-        className="w-4 h-4 fill-[#1DA1F2]"
-      >
-        <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0 0 20 3.92a8.19 8.19 0 0 1-2.357.646 4.118 4.118 0 0 0 1.804-2.27 8.224 8.224 0 0 1-2.605.996 4.107 4.107 0 0 0-6.993 3.743 11.65 11.65 0 0 1-8.457-4.287 4.106 4.106 0 0 0 1.27 5.477A4.073 4.073 0 0 1 .8 7.713v.052a4.105 4.105 0 0 0 3.292 4.022 4.095 4.095 0 0 1-1.853.07 4.108 4.108 0 0 0 3.834 2.85A8.233 8.233 0 0 1 0 16.407a11.615 11.615 0 0 0 6.29 1.84"></path>
-      </svg>
-    </StampButton>
+    <a
+      className="relative p-2 text-lg text-zinc-800 bg-[#ece5d8] hover:bg-[#ece5d8] rounded-full btn"
+      href={getShareURL(id)}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div className="flex absolute inset-0 items-center p-2">
+        <div className="flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full">
+          <svg
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            className="w-4 h-4 fill-[#1DA1F2]"
+          >
+            <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0 0 20 3.92a8.19 8.19 0 0 1-2.357.646 4.118 4.118 0 0 0 1.804-2.27 8.224 8.224 0 0 1-2.605.996 4.107 4.107 0 0 0-6.993 3.743 11.65 11.65 0 0 1-8.457-4.287 4.106 4.106 0 0 0 1.27 5.477A4.073 4.073 0 0 1 .8 7.713v.052a4.105 4.105 0 0 0 3.292 4.022 4.095 4.095 0 0 1-1.853.07 4.108 4.108 0 0 0 3.834 2.85A8.233 8.233 0 0 1 0 16.407a11.615 11.615 0 0 0 6.29 1.84"></path>
+          </svg>
+        </div>
+      </div>
+      <p className="ml-4">ツイート</p>
+    </a>
   )
 }
 
-const StampButton: FC<{ label: string; id?: string }> = ({
+const StampButton: FC<{ label: string; onClick?: () => void }> = ({
   label,
-  id,
+  onClick,
   children,
 }) => {
-  if (id) {
-    return (
-      <a
-        className="relative p-2 text-lg text-zinc-800 bg-[#ece5d8] hover:bg-[#ece5d8] rounded-full btn"
-        href={getShareURL(id)}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <div className="flex absolute inset-0 items-center p-2">
-          <div className="flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full">
-            {children}
-          </div>
-        </div>
-        <p className="ml-4">{label}</p>
-      </a>
-    )
-  }
-
   return (
-    <div className="relative p-2 text-lg text-zinc-800 bg-[#ece5d8] hover:bg-[#ece5d8] rounded-full btn">
+    <div
+      className="relative p-2 text-lg text-zinc-800 bg-[#ece5d8] hover:bg-[#ece5d8] rounded-full btn"
+      onClick={onClick}
+    >
       <div className="flex absolute inset-0 items-center p-2">
         <div className="flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full">
           {children}
