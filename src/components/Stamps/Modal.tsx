@@ -1,13 +1,16 @@
+import { useState } from "react"
 import type { FC } from "react"
+import { CopyToClipboard } from "react-copy-to-clipboard"
 
 import { SITE_URL } from "consts"
 import { useSelectedStamp } from "hooks"
 
 import { BlurImage } from "./BlurImage"
 
+const getTweetText = (id: string) => `#emotwicon_genshin ${SITE_URL + id}`
+
 export const Modal = () => {
-  const [selectedStamp] = useSelectedStamp()
-  const { text, imageProps, alt } = selectedStamp
+  const [{ id, text, imageProps, alt }] = useSelectedStamp()
 
   return (
     <>
@@ -24,8 +27,8 @@ export const Modal = () => {
           <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
           <div className="flex flex-col gap-2 items-stretch w-64">
             <Favorite />
-            <Copy />
-            <Tweet id={selectedStamp.id} />
+            <Copy id={id} />
+            <Tweet id={id} />
           </div>
         </label>
       </label>
@@ -55,15 +58,35 @@ const Favorite = () => {
   )
 }
 
-const getTweetText = (id: string) => `#emotwicon_genshin ${SITE_URL + id}`
+const Copy = ({ id }: { id: string }) => {
+  const [copied, setCopied] = useState(false)
 
-const Copy = () => {
+  const handleCopy = () => {
+    if (copied) return
+    setCopied(true)
+    setTimeout(() => {
+      setCopied(false)
+    }, 2000)
+  }
+
   return (
-    <StampButton label="コピー">
-      <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#ece5d8]">
-        <path d="M5.503 4.627 5.5 6.75v10.504a3.25 3.25 0 0 0 3.25 3.25h8.616a2.251 2.251 0 0 1-2.122 1.5H8.75A4.75 4.75 0 0 1 4 17.254V6.75c0-.98.627-1.815 1.503-2.123ZM17.75 2A2.25 2.25 0 0 1 20 4.25v13a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-13A2.25 2.25 0 0 1 8.75 2h9Zm0 1.5h-9a.75.75 0 0 0-.75.75v13c0 .414.336.75.75.75h9a.75.75 0 0 0 .75-.75v-13a.75.75 0 0 0-.75-.75Z" />
-      </svg>
-    </StampButton>
+    <CopyToClipboard text={getTweetText(id)} onCopy={() => handleCopy()}>
+      <StampButton label="コピー">
+        {copied ? (
+          <svg viewBox="0 0 20 20" className="w-5 h-5 fill-[#1DA1F2]">
+            <path
+              fillRule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#ece5d8]">
+            <path d="M5.503 4.627 5.5 6.75v10.504a3.25 3.25 0 0 0 3.25 3.25h8.616a2.251 2.251 0 0 1-2.122 1.5H8.75A4.75 4.75 0 0 1 4 17.254V6.75c0-.98.627-1.815 1.503-2.123ZM17.75 2A2.25 2.25 0 0 1 20 4.25v13a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-13A2.25 2.25 0 0 1 8.75 2h9Zm0 1.5h-9a.75.75 0 0 0-.75.75v13c0 .414.336.75.75.75h9a.75.75 0 0 0 .75-.75v-13a.75.75 0 0 0-.75-.75Z" />
+          </svg>
+        )}
+      </StampButton>
+    </CopyToClipboard>
   )
 }
 
