@@ -3,7 +3,7 @@ import type { FC } from "react"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
 import { SITE_URL } from "consts"
-import { useSelectedStamp } from "hooks"
+import { useFavorites, useSelectedStamp } from "hooks"
 
 import { BlurImage } from "./BlurImage"
 
@@ -26,7 +26,7 @@ export const Modal = () => {
           <BlurImage imageProps={imageProps} alt={alt} />
           <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
           <div className="flex flex-col gap-2 items-stretch w-64">
-            <Favorite />
+            <Favorite id={id} />
             <Copy id={id} />
             <Tweet id={id} />
           </div>
@@ -38,22 +38,44 @@ export const Modal = () => {
 
 // TODO: Implement modal menu
 
-const Favorite = () => {
+const Favorite = ({ id }: { id: string }) => {
+  const fav = useFavorites()
+  const faved = fav.favorites.includes(id)
+
   return (
-    <StampButton label="お気に入り">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        className="w-5 h-5 stroke-[#d9b1ad]"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-        />
-      </svg>
+    <StampButton label="お気に入り" onClick={() => fav.updateFavs(id)}>
+      <label className={"swap swap-flip " + (faved ? "swap-active" : "")}>
+        <div className="swap-on">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            className="w-5 h-5 fill-[#d9b1ad] stroke-[#d9b1ad]"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+            />
+          </svg>
+        </div>
+        <div className="swap-off">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            className="w-5 h-5 stroke-[#d9b1ad]"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+            />
+          </svg>
+        </div>
+      </label>
     </StampButton>
   )
 }
