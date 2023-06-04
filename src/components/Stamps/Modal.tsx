@@ -23,7 +23,9 @@ export const Modal = () => {
               <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
             </>
           )}
-          <BlurImage imageProps={imageProps} alt={alt} />
+          <div className="aspect-square min-w-[300px]">
+            <BlurImage imageProps={imageProps} alt={alt} />
+          </div>
           <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
           <div className="flex flex-col gap-2 items-stretch w-64">
             <Favorite id={id} />
