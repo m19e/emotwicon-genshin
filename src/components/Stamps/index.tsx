@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useFavorites } from "hooks"
 import type { StampProps } from "types/cms"
 
 import { Modal } from "./Modal"
@@ -9,7 +9,10 @@ type Props = {
 }
 
 export const Stamps = ({ stamps }: Props) => {
-  const items = stamps.map((s) => <Stamp key={s.id} stamp={s} />)
+  const { favorites, favoriteMode } = useFavorites()
+  const items = (
+    favoriteMode ? stamps.filter((s) => favorites.includes(s.id)) : stamps
+  ).map((s) => <Stamp key={s.id} stamp={s} />)
 
   return (
     <>
@@ -28,7 +31,8 @@ export const Stamps = ({ stamps }: Props) => {
 }
 
 const Header = () => {
-  const [favChecked, setFavChecked] = useState(false)
+  const fav = useFavorites()
+  const { toggleMode, disabled, favoriteMode } = fav
 
   return (
     <header className="px-4 mt-1.5 w-full sm:px-8 sm:mt-3 sm:h-16 lg:max-w-screen-lg navbar">
@@ -37,17 +41,22 @@ const Header = () => {
         #emotwicon_genshin
       </h1>
       <div className="navbar-end">
-        <div
-          className="flex gap-1 items-center p-2 bg-[#EEF2D0] shadow rounded-box"
-          onClick={() => setFavChecked((prev) => !prev)}
+        <button
+          className="flex gap-1 items-center p-2 bg-[#EEF2D0] shadow disabled:cursor-not-allowed rounded-box"
+          onClick={() => toggleMode()}
+          disabled={disabled}
         >
           <input
             type="checkbox"
             className="checked:bg-[#d9b1ad] checked:border-[#d9b1ad] toggle"
-            checked={favChecked}
+            checked={favoriteMode}
+            disabled={disabled}
           />
           <label
-            className={"swap swap-flip " + (favChecked ? "swap-active" : "")}
+            className={
+              "swap swap-flip cursor-auto " +
+              (favoriteMode ? "swap-active" : "")
+            }
           >
             <div className="swap-on">
               <svg
@@ -80,7 +89,7 @@ const Header = () => {
               </svg>
             </div>
           </label>
-        </div>
+        </button>
       </div>
     </header>
   )
