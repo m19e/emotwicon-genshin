@@ -1,8 +1,7 @@
 import { useFavorites } from "hooks"
 
 export const Header = () => {
-  const fav = useFavorites()
-  const { toggleMode, disabled, favoriteMode } = fav
+  const { toggleMode, disabled, favoriteMode } = useFavorites()
 
   return (
     <header className="px-4 mt-1.5 w-full sm:px-8 sm:mt-3 sm:h-16 lg:max-w-screen-lg navbar">

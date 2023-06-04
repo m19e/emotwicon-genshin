@@ -36,14 +36,12 @@ export const Modal = () => {
   )
 }
 
-// TODO: Implement modal menu
-
 const Favorite = ({ id }: { id: string }) => {
-  const fav = useFavorites()
-  const faved = fav.favorites.includes(id)
+  const { favorites, updateFavs } = useFavorites()
+  const faved = favorites.includes(id)
 
   return (
-    <StampButton label="お気に入り" onClick={() => fav.updateFavs(id)}>
+    <StampButton label="お気に入り" onClick={() => updateFavs(id)}>
       <label className={"swap swap-flip " + (faved ? "swap-active" : "")}>
         <div className="swap-on">
           <svg

@@ -10,8 +10,7 @@ export const useFavorites = () => {
 
   const toggleMode = () => setMode((prev) => !prev)
   const updateFavs = (id: string) => {
-    const isDelete = favorites.includes(id)
-    if (isDelete) {
+    if (favorites.includes(id)) {
       setFavs((prev) => {
         const newFavs = prev.filter((f) => f !== id)
         if (!newFavs.length) setMode(false)

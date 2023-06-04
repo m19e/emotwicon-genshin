@@ -1,3 +1,5 @@
+import { useMemo } from "react"
+
 import { useFavorites } from "hooks"
 import type { StampProps } from "types/cms"
 
@@ -11,10 +13,14 @@ type Props = {
 
 export const Stamps = ({ stamps }: Props) => {
   const { favorites, favoriteMode } = useFavorites()
-  const items = (
-    favoriteMode ? stamps.filter((s) => favorites.includes(s.id)) : stamps
-  ).map((s) => <Stamp key={s.id} stamp={s} />)
-
+  const items = useMemo(
+    () =>
+      (favoriteMode
+        ? stamps.filter((s) => favorites.includes(s.id))
+        : stamps
+      ).map((s) => <Stamp key={s.id} stamp={s} />),
+    [favoriteMode, favorites, stamps]
+  )
   return (
     <>
       <div className="flex flex-col items-center space-y-1.5 min-h-screen sm:space-y-3 bg-kirara">
