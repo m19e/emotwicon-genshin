@@ -12,7 +12,7 @@ const getImage = async (src: string) => {
   const {
     metadata: { height, width },
     ...plaiceholder
-  } = await getPlaiceholder(buffer, { size: 10 })
+  } = await getPlaiceholder(buffer)
 
   return {
     ...plaiceholder,
