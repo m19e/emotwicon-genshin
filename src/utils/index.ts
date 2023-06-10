@@ -20,7 +20,7 @@ const getImage = async (src: string) => {
   }
 }
 
-export const getDynamicImage = async (stamp: VersionStampContent) => {
+const getDynamicImage = async (stamp: VersionStampContent) => {
   const { image, character_id } = stamp
   const { base64, img } = await getImage(image.url)
 
@@ -37,7 +37,10 @@ const getStampProps = async (
     index: number
   }
 ) => {
-  const dynamic = await getDynamicImage(vs)
+  const { url, ...axis } = vs.image
+  const dynamic = {
+    imageProps: { ...axis, src: url },
+  }
   const { character_id, text } = vs
   const { version_id, index } = data
 

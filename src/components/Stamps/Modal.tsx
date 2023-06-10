@@ -10,7 +10,7 @@ import { BlurImage } from "./BlurImage"
 const getTweetText = (id: string) => `#emotwicon_genshin ${SITE_URL + id}`
 
 export const Modal = () => {
-  const [{ id, text, imageProps, alt }] = useSelectedStamp()
+  const [{ id, text, imageProps, alt, character_id }] = useSelectedStamp()
 
   return (
     <>
@@ -24,7 +24,7 @@ export const Modal = () => {
             </>
           )}
           <div className="aspect-square min-w-[300px]">
-            <BlurImage imageProps={imageProps} alt={alt} />
+            <BlurImage imageProps={imageProps} alt={alt ?? character_id[0]} />
           </div>
           <div className="my-2 divider before:bg-[#EEF2D0]/25 after:bg-[#EEF2D0]/25"></div>
           <div className="flex flex-col gap-2 items-stretch w-64">
