@@ -38,7 +38,7 @@ export const Stamps = ({ stamps }: Props) => {
               <div className="flex flex-col items-center">
                 <a
                   className="flex flex-col items-center text-sm"
-                  href="https://twitter.com/Versas_me"
+                  href="https://twitter.com/Versas_me/status/1667840009087614983"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
