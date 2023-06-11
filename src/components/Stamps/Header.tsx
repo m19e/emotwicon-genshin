@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { useFavorites } from "hooks"
 
 export const Header = () => {
@@ -7,7 +9,9 @@ export const Header = () => {
     <header className="px-4 mt-1.5 w-full sm:px-8 sm:mt-3 sm:h-16 lg:max-w-screen-lg navbar">
       <div className="md:navbar-start"></div>
       <h1 className="p-2 text-2xl font-black text-[#637340] rounded sm:text-4xl bg-[#EEF2D0]/75 font-latego navbar-center">
-        #emotwicon_genshin
+        <Link href="/">
+          <a>#emotwicon_genshin</a>
+        </Link>
       </h1>
       <div className="navbar-end">
         <button
